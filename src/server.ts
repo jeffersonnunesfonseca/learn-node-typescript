@@ -5,26 +5,24 @@ import { ForecastController } from './controllers/forecast';
 import { Application } from 'express';
 
 export class SetupServer extends Server {
+  constructor(private port = 3000) {
+    super();
+  }
 
-    constructor(private port = 3000) {
-        super();        
-    }
+  public init(): void {
+    this.setupExpress();
+    this.setupController();
+  }
 
-    public init(): void {
-        this.setupExpress();
-        this.setupController();
-    }
+  public getApp(): Application {
+    return this.app;
+  }
+  private setupExpress(): void {
+    this.app.use(bodyParser.json());
+  }
 
-    public getApp(): Application {
-        return this.app;
-    }
-    private setupExpress(): void {
-        this.app.use(bodyParser.json());
-    }
-
-    private setupController(): void {
-        const foreCastController  = new ForecastController();
-        this.addControllers([foreCastController]);
-    }
-    
+  private setupController(): void {
+    const foreCastController = new ForecastController();
+    this.addControllers([foreCastController]);
+  }
 }
