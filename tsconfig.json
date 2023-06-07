@@ -4,7 +4,7 @@
         "moduleResolution": "node",
         "module": "commonjs",
         "lib": [
-            "es2022"
+            "es2019"
         ],
         "sourceMap": true,
         "outDir": "dist",
